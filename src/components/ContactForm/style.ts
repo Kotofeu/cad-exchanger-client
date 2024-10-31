@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Typography } from '@mui/material';
 
-export const ContackInner = styled(motion.div)`
+export const ContactInner = styled(motion.section)`
     display: flex;
     flex-direction: column;
     align-items: center;

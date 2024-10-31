@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://cad-exchanger-client-kotofeus-projects.vercel.app/sitemap.xml

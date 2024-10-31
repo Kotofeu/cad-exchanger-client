@@ -1,9 +1,9 @@
 'use client';
-import { useState, FC, useEffect } from 'react';
+import { useState, FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Snackbar, Alert } from '@mui/material';
 import axios from 'axios';
-import { ContackInner, Form, Title } from './style';
+import { ContactInner, Form, Title } from './style';
 import Button from '@/UI/Button';
 import TextField from '@/UI/TextField';
 import Container from '@/UI/Container';
@@ -48,14 +48,15 @@ const ContactForm: FC = () => {
 
     return (
         <Container>
-            <AnimatePresence mode='wait' initial={false}>
+            <AnimatePresence mode='wait'>
                 {!successMessage ? (
-                    <ContackInner
+                    <ContactInner
                         layout
                         key='form'
                         initial={{ opacity: 0, scale: 0.8 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
+                        transition={{duration: 0.2}}
                     >
                         <Title variant='h1'>Отправьте сообщение!</Title>
                         <Form onSubmit={handleSubmit} style={{ marginTop: '33px' }}>
@@ -97,17 +98,19 @@ const ContactForm: FC = () => {
                         >
                             <Alert severity='error' variant='filled' sx={{ width: '100%' }}>{error}</Alert>
                         </Snackbar>
-                    </ContackInner>
+                    </ContactInner>
                 ) : (
-                    <ContackInner
+                    <ContactInner
                         layout
                         key='success'
                         initial={{ opacity: 0, scale: 0.8 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
+                        transition={{duration: 0.2}}
+
                     >
                         <Title variant='h1'>{successMessage}</Title>
-                    </ContackInner>
+                    </ContactInner>
                 )}
             </AnimatePresence>
         </Container>

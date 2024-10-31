@@ -1,13 +1,13 @@
-import { Container, Typography, Button } from '@mui/material';
-
+import ContactSection from '@/components/ContactSection/ContactSection';
+import CardGrid from '@/components/GridSection/CardGrid';
+import HomeSection from '@/components/HomeSection/HomeSection';
 const HomePage: React.FC = () => {
     return (
-        <Container >
-            <Typography variant="h4">Welcome to My Next App</Typography>
-            <Button variant="contained" color="primary" href="/contact">
-                Contact Us
-            </Button>
-        </Container>
+        < >
+            <HomeSection/>
+            <CardGrid/>
+            <ContactSection/>
+        </>
     );
 };
 

@@ -1,8 +1,9 @@
 'use client'
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 
-export const FooterContainer = styled.header`
+export const FooterComponent = styled(motion.footer)`
     position: fixed;
     z-index: 10;
     bottom: 0;
@@ -10,7 +11,7 @@ export const FooterContainer = styled.header`
     right: 0;
     background-color: #1E1E1E;
 `;
-export const FooterInner = styled.header`
+export const FooterInner = styled.div`
     display: flex;
     padding: 20px 0;
     justify-content: center;

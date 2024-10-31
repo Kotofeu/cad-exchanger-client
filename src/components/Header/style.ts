@@ -1,8 +1,9 @@
 'use client'
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled(motion.header)`
     position: fixed;
     z-index: 10;
     top: 0;
@@ -10,7 +11,7 @@ export const HeaderContainer = styled.header`
     right: 0;
     background-color: #1E1E1E;
 `;
-export const HeaderNavigation = styled.header`
+export const HeaderNavigation = styled.nav`
     display: flex;
     padding: 20px 0;
     justify-content: space-between;
