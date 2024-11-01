@@ -25,6 +25,6 @@ export const GridContainer = styled(Grid)`
 `;
 
 export const CustomCard = styled(Card)`
-    background-color: #212121;
+    background-color: #212121 !important;
 `;
 

@@ -1,7 +1,7 @@
 'use client';
 import { useState, FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Snackbar, Alert } from '@mui/material';
+import { Snackbar, Alert, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { ContactInner, Form, Title } from './style';
 import Button from '@/UI/Button';
@@ -12,6 +12,7 @@ const ContactForm: FC = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [loading, setLoading] = useState(false); 
 
     const regEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i;
 
@@ -37,12 +38,15 @@ const ContactForm: FC = () => {
         const validationError = validateForm();
         if (validationError) { setError(validationError); return; }
 
+        setLoading(true);
         try {
             const { data } = await axios.post(process.env.NEXT_PUBLIC_API_URL!, formData);
             setSuccessMessage(data);
             resetForm();
         } catch {
             setError('Не удалось отправить сообщение.');
+        } finally {
+            setLoading(false); 
         }
     };
 
@@ -56,7 +60,7 @@ const ContactForm: FC = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{duration: 0.2}}
+                        transition={{ duration: 0.2 }}
                     >
                         <Title variant='h1'>Отправьте сообщение!</Title>
                         <Form onSubmit={handleSubmit} style={{ marginTop: '33px' }}>
@@ -88,7 +92,9 @@ const ContactForm: FC = () => {
                                 error={!!error && (formData.message.length < 2)}
                                 variant='outlined'
                             />
-                            <Button type='submit'>Отправить</Button>
+                            <Button type='submit' disabled={loading} variant='contained' color='primary'>
+                                {loading ? <CircularProgress size={31} color="inherit" /> : 'Отправить'}
+                            </Button>
                         </Form>
                         <Snackbar
                             open={!!error}
@@ -106,7 +112,7 @@ const ContactForm: FC = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{duration: 0.2}}
+                        transition={{ duration: 0.2 }}
 
                     >
                         <Title variant='h1'>{successMessage}</Title>
